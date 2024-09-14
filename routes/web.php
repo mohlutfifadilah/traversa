@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GantiPassword;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +27,8 @@ Route::get('/', function () {
 # Admin
 Route::middleware(['Auth'])->group(function(){
     Route::get('/dashboard',  [DashboardController::class, 'index']);
-    // Route::get('/profil-user/{id}', [BiodataController::class, 'index'])->name('profil-user-index');
-    // Route::get('/profil-user/edit/{id}', [BiodataController::class, 'edit'])->name('profil-user-edit');
-    // Route::put('/profil-user/update/{id}', [BiodataController::class, 'update'])->name('profil-user-update');
+    Route::get('/profil-user/edit/{id}', [ProfilController::class, 'edit'])->name('profil-user-edit');
+    Route::put('/profil-user/update/{id}', [ProfilController::class, 'update'])->name('profil-user-update');
 
     // // users
     // Route::resource('users', UsersController::class);
@@ -63,8 +64,8 @@ Route::middleware(['Auth'])->group(function(){
     // Route::put('/{jenjang}/artikel/update/{profil}/{id}', [ArtikelController::class, 'update'])->name('artikel-update');
     // Route::delete('/{jenjang}/artikel/destroy/{profil}/{id}', [ArtikelController::class, 'destroy'])->name('artikel-destroy');
 
-    // Route::get('/gantiPassword/{id}', [GantiPassword::class, 'change'])->name('change');
-    // Route::put('/updatePassword/{id}', [GantiPassword::class, 'update'])->name('update-password');
+    Route::get('/gantiPassword/{id}', [GantiPassword::class, 'change'])->name('change-password');
+    Route::put('/updatePassword/{id}', [GantiPassword::class, 'update'])->name('update-password');
 });
 
 // Login
