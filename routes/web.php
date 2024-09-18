@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\ArmadaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GantiPassword;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +34,17 @@ Route::middleware(['Auth'])->group(function(){
     Route::get('/profil-user/edit/{id}', [ProfilController::class, 'edit'])->name('profil-user-edit');
     Route::put('/profil-user/update/{id}', [ProfilController::class, 'update'])->name('profil-user-update');
 
-    // // users
-    // Route::resource('users', UsersController::class);
+    // users
+    Route::resource('users', UsersController::class);
+
+    // armada
+    Route::resource('armada', ArmadaController::class);
+
+    // invoice
+    Route::resource('invoice', InvoiceController::class);
+
+    // riwayat
+    Route::resource('riwayat', RiwayatController::class);
     // // profil
     // Route::get('/{jenjang}/profil/{id}', [ProfilController::class, 'index'])->name('profil-index');
     // Route::get('/{jenjang}/profil/edit/{id}', [ProfilController::class, 'edit'])->name('profil-edit');

@@ -80,19 +80,31 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Data</span>
             </li>
-            <li class="menu-item {{ Request::segment(1) === 'dashboard' ? 'active' : '' }}">
-              <a href="/dashboard" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+            <li class="menu-item {{ Request::segment(1) === 'users' ? 'active' : '' }}">
+              <a href="{{ route('users.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                <div data-i18n="Analytics">Pengguna</div>
+              </a>
+            </li>
+            <li class="menu-item {{ Request::segment(1) === 'armada' ? 'active' : '' }}">
+              <a href="{{ route('armada.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-car"></i>
+                <div data-i18n="Analytics">Armada</div>
               </a>
             </li>
             <!-- Pemesanan -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Pemesanan</span></li>
             <!-- Cards -->
-            <li class="menu-item">
-              <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Cards</div>
+            <li class="menu-item {{ Request::segment(1) === 'invoice' ? 'active' : '' }}">
+              <a href="{{ route('invoice.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-food-menu"></i>
+                <div data-i18n="Basic">Invoice</div>
+              </a>
+            </li>
+            <li class="menu-item {{ Request::segment(1) === 'riwayat' ? 'active' : '' }}">
+              <a href="{{ route('riwayat.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-history"></i>
+                <div data-i18n="Basic">Riwayat</div>
               </a>
             </li>
           </ul>
