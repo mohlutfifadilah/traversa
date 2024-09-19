@@ -86,6 +86,12 @@
                 <div data-i18n="Analytics">Pengguna</div>
               </a>
             </li>
+            <li class="menu-item {{ Request::segment(1) === 'kategori' ? 'active' : '' }}">
+              <a href="{{ route('kategori.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-category"></i>
+                <div data-i18n="Analytics">Kategori</div>
+              </a>
+            </li>
             <li class="menu-item {{ Request::segment(1) === 'armada' ? 'active' : '' }}">
               <a href="{{ route('armada.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-car"></i>

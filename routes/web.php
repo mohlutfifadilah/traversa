@@ -4,6 +4,7 @@ use App\Http\Controllers\ArmadaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GantiPassword;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RiwayatController;
@@ -36,6 +37,9 @@ Route::middleware(['Auth'])->group(function(){
 
     // users
     Route::resource('users', UsersController::class);
+
+    // kategori
+    Route::resource('kategori', KategoriController::class);
 
     // armada
     Route::resource('armada', ArmadaController::class);
