@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Armada;
+use App\Models\Invoice;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -12,6 +15,8 @@ class InvoiceController extends Controller
     public function index()
     {
         //
+        $invoice = Invoice::where('id_status', 1)->get();
+        return view('admin.invoice.index', compact('invoice'));
     }
 
     /**
@@ -36,6 +41,10 @@ class InvoiceController extends Controller
     public function show(string $id)
     {
         //
+        $invoice = Invoice::find($id);
+        $armada = Armada::find($invoice->id_armada);
+        $status = Status::find($invoice->id_status);
+        return view('admin.invoice.invoice_show', compact('invoice', 'armada', 'status'));
     }
 
     /**
