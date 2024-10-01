@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('jumlah_penumpang');
             $table->string('no_whatsapp');
             $table->string('barang')->nullable();
-            $table->string('tarif')->nullable();
+            $table->integer('tarif')->nullable();
             $table->timestamps();
         });
     }

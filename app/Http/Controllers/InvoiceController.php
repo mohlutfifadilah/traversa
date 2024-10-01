@@ -6,6 +6,7 @@ use App\Models\Armada;
 use App\Models\Invoice;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class InvoiceController extends Controller
 {
@@ -69,5 +70,23 @@ class InvoiceController extends Controller
     public function destroy(string $id)
     {
         //
+        $invoice = Invoice::find($id);
+        $invoice->delete();
+
+        Alert::alert('Berhasil', 'Invoice berhasil dihapus ', 'success');
+        return redirect()->route('invoice.index')->withSuccess('Data Invoice berhasil dihapus');
+    }
+
+    public function submit_tarif(Request $request, string $id){
+        $invoice = Invoice::find($id);
+        $tarif = intval($request->tarif);
+
+        $invoice->update([
+            'tarif' => $tarif,
+            'id_status' => 2
+        ]);
+
+        Alert::alert('Berhasil', 'Tarif berhasil ditambahkan ', 'success');
+        return redirect()->route('invoice.index')->withSuccess('Tarif berhasil ditambahkan');
     }
 }

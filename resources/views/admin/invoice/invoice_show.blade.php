@@ -32,45 +32,47 @@
                                     </div>
                                     <div class="col-md-6">
                                         <dl class="row mt-2">
-                                            <dt class="col-sm-3">Armada</dt>
-                                            <dd class="col-sm-9">
+                                            <dt class="col-sm-5">Armada</dt>
+                                            <dd class="col-sm-7">
                                                 <p>{{ $armada->nama_armada }}</p>
                                             </dd>
 
-                                            <dt class="col-sm-3">Alamat Penjemputan</dt>
-                                            <dd class="col-sm-9">
+                                            <dt class="col-sm-5">Alamat Penjemputan</dt>
+                                            <dd class="col-sm-7">
                                                 <p>{{ $invoice->alamat_penjemputan }}</p>
                                             </dd>
 
-                                            <dt class="col-sm-3">Alamat Tujuan</dt>
-                                            <dd class="col-sm-9">
+                                            <dt class="col-sm-5">Alamat Tujuan</dt>
+                                            <dd class="col-sm-7">
                                                 <p>{{ $invoice->alamat_tujuan }}</p>
                                             </dd>
 
-                                            <dt class="col-sm-3">Waktu</dt>
-                                            <dd class="col-sm-9">
+                                            <dt class="col-sm-5">Waktu</dt>
+                                            <dd class="col-sm-7">
                                                 <p>{{ $invoice->tanggal_jam }}</p>
                                             </dd>
 
-                                            <dt class="col-sm-3">Jumlah Penumpang</dt>
-                                            <dd class="col-sm-9">
+                                            <dt class="col-sm-5">Jumlah Penumpang</dt>
+                                            <dd class="col-sm-7">
                                                 <p>{{ $invoice->jumlah_penumpang }}</p>
                                             </dd>
 
-                                            <dt class="col-sm-3">Barang</dt>
-                                            <dd class="col-sm-9">
+                                            <dt class="col-sm-5">Barang</dt>
+                                            <dd class="col-sm-7">
                                                 <p>{{ $invoice->barang }}</p>
                                             </dd>
 
-                                            <dt class="col-sm-3">Tarif</dt>
-                                            <dd class="col-sm-9">
-                                                @if (!$invoice->tarif)
+                                            <dt class="col-sm-5">Tarif</dt>
+                                            <dd class="col-sm-7">
+                                                @if (is_null($invoice->tarif) | !is_int($invoice->tarif))
                                                     <p class="text-danger">-,</p>
+                                                @else
+                                                    <p>@currency($invoice->tarif)</p>
                                                 @endif
                                             </dd>
 
-                                            <dt class="col-sm-3">Status</dt>
-                                            <dd class="col-sm-9">
+                                            <dt class="col-sm-5">Status</dt>
+                                            <dd class="col-sm-7">
                                                 <p><span class="badge rounded-pill bg-warning"><i class="bx bx-no-entry"></i> {{ $status->nama_status }}</span></p>
                                             </dd>
 
@@ -86,34 +88,38 @@
                                     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalCenterTitle">Konfirmasi</h5>
-                                                <button
-                                                type="button"
-                                                class="btn-close"
-                                                data-bs-dismiss="modal"
-                                                aria-label="Close"
-                                                ></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="nameWithTitle" class="form-label">Name</label>
-                                                        <input
-                                                        type="text"
-                                                        id="nameWithTitle"
-                                                        class="form-control"
-                                                        placeholder="Enter Name"
-                                                        />
+                                                <form action="{{ route('submit_tarif', $invoice->id) }}" method="POST" id="formTarif">
+                                                    @csrf
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalCenterTitle">Konfirmasi</h5>
+                                                        <button
+                                                        type="button"
+                                                        class="btn-close"
+                                                        data-bs-dismiss="modal"
+                                                        aria-label="Close"
+                                                        ></button>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                                Batal
-                                                </button>
-                                                <button type="button" class="btn btn-success"><i class="bx bx-message-alt-check"></i> Submit</button>
-                                            </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col mb-3">
+                                                                <label for="tarif" class="form-label">Tarif</label>
+                                                                <input
+                                                                type="text"
+                                                                id="tarif"
+                                                                class="form-control"
+                                                                name="tarif"
+                                                                placeholder="Masukkan tarif"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                        Batal
+                                                        </button>
+                                                        <button type="submit" class="btn btn-success"><i class="bx bx-message-alt-check"></i> Submit</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -154,5 +160,48 @@
               </div>
             </div>
             <!-- / Content -->
+            <script>
+                var rupiah1 = document.getElementById("tarif");
+                rupiah1.addEventListener("keyup", function(e) {
+                    rupiah1.value = convertRupiah(this.value, "Rp. ");
+                });
+                rupiah1.addEventListener('keydown', function(event) {
+                    return isNumberKey(event);
+                });
+
+                document.getElementById('formTarif').addEventListener('submit', function() {
+                    // Hilangkan "Rp." dan titik saat form disubmit
+                    rupiah1.value = rupiah1.value.replace(/[^,\d]/g, "");
+                });
+
+                function convertRupiah(angka, prefix) {
+                    var number_string = angka.replace(/[^,\d]/g, "").toString(),
+                    split  = number_string.split(","),
+                    sisa   = split[0].length % 3,
+                    rupiah = split[0].substr(0, sisa),
+                    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+                    if (ribuan) {
+                        separator = sisa ? "." : "";
+                        rupiah += separator + ribuan.join(".");
+                    }
+
+                    rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+                    return prefix == undefined ? rupiah : rupiah ? prefix + rupiah : "";
+                }
+
+                function isNumberKey(evt) {
+                    key = evt.which || evt.keyCode;
+                    if ( 	key != 188 // Comma
+                        && key != 8 // Backspace
+                        && key != 17 && key != 86 & key != 67 // Ctrl c, ctrl v
+                        && (key < 48 || key > 57) // Non digit
+                        )
+                    {
+                        evt.preventDefault();
+                        return;
+                    }
+                }
+            </script>
 @endsection
 

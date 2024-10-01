@@ -46,6 +46,7 @@ Route::middleware(['Auth'])->group(function(){
 
     // invoice
     Route::resource('invoice', InvoiceController::class);
+    Route::post('/submit_tarif/{id}', [InvoiceController::class, 'submit_tarif'])->name('submit_tarif');
 
     // riwayat
     Route::resource('riwayat', RiwayatController::class);

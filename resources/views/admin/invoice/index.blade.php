@@ -9,7 +9,7 @@
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="m-0">Invoice</h5>
-                    <a href="{{ route('invoice.create') }}" class="btn btn-success btn-sm"><i class="bx bx-plus-circle"></i> Tambah</a>
+                    {{-- <a href="{{ route('invoice.create') }}" class="btn btn-success btn-sm"><i class="bx bx-plus-circle"></i> Tambah</a> --}}
                 </div>
                 <div class="table-responsive text-nowrap mb-3">
                     <table id="dataTable" class="table table-striped" style="width:100%">
@@ -45,10 +45,10 @@
                                         </a>
 
                                         {{-- Tombol Edit --}}
-                                        <a class="btn btn-sm btn-warning text-white mb-2 mb-md-0 me-md-2"
+                                        {{-- <a class="btn btn-sm btn-warning text-white mb-2 mb-md-0 me-md-2"
                                             href="{{ route('invoice.edit', $i->id) }}">
                                             <i class="bx bx-edit"></i> Ubah
-                                        </a>
+                                        </a> --}}
 
                                         {{-- Tombol Hapus --}}
                                         <form id="delete-form-{{ $i->id }}" action="{{ route('invoice.destroy', $i->id) }}"
