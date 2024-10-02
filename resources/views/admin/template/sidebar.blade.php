@@ -105,6 +105,12 @@
               <a href="{{ route('invoice.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-food-menu"></i>
                 <div data-i18n="Basic">Invoice</div>
+                @php
+                    $count = \App\Models\Invoice::where('id_status', 1)->where('is_paid', 0)->where('tarif', '<=', 0)->count();
+                @endphp
+                @if ($count != 0)
+                    <div class="badge rounded-pill bg-label-danger text-uppercase fs-tiny ms-auto">{{ $count }}</div>
+                @endif
               </a>
             </li>
             <li class="menu-item {{ Request::segment(1) === 'riwayat' ? 'active' : '' }}">

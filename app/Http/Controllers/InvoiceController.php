@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Armada;
 use App\Models\Invoice;
+use App\Models\Pembayaran;
 use App\Models\Status;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -16,7 +18,7 @@ class InvoiceController extends Controller
     public function index()
     {
         //
-        $invoice = Invoice::where('id_status', 1)->get();
+        $invoice = Invoice::where('id_status', 1)->where('is_paid', 0)->where('tarif', '<=', 0)->get();
         return view('admin.invoice.index', compact('invoice'));
     }
 
@@ -45,7 +47,8 @@ class InvoiceController extends Controller
         $invoice = Invoice::find($id);
         $armada = Armada::find($invoice->id_armada);
         $status = Status::find($invoice->id_status);
-        return view('admin.invoice.invoice_show', compact('invoice', 'armada', 'status'));
+        $pembayaran = Pembayaran::all();
+        return view('admin.invoice.invoice_show', compact('invoice', 'armada', 'status', 'pembayaran'));
     }
 
     /**
@@ -79,11 +82,23 @@ class InvoiceController extends Controller
 
     public function submit_tarif(Request $request, string $id){
         $invoice = Invoice::find($id);
+
+        // Menggunakan kombinasi huruf kapital dan angka
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $length = 16;
+
+        // Mengenerate kode unik sepanjang 16 karakter
+        $kode_transaksi = '';
+        for ($i = 0; $i < $length; $i++) {
+            $kode_transaksi .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        $id_jenis_pembayaran = intval($request->jenis_pembayaran);
         $tarif = intval($request->tarif);
 
         $invoice->update([
+            'kode_transaksi' => $kode_transaksi,
+            'id_jenis_pembayaran' => $id_jenis_pembayaran,
             'tarif' => $tarif,
-            'id_status' => 2
         ]);
 
         Alert::alert('Berhasil', 'Tarif berhasil ditambahkan ', 'success');

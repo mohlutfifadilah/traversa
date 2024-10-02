@@ -50,6 +50,8 @@ Route::middleware(['Auth'])->group(function(){
 
     // riwayat
     Route::resource('riwayat', RiwayatController::class);
+    Route::get('/cetak_invoice/{id}', [RiwayatController::class, 'cetak_invoice'])->name('cetak_invoice');
+    Route::post('/riwayat_paid/{id}', [RiwayatController::class, 'riwayat_paid'])->name('riwayat_paid');
     // // profil
     // Route::get('/{jenjang}/profil/{id}', [ProfilController::class, 'index'])->name('profil-index');
     // Route::get('/{jenjang}/profil/edit/{id}', [ProfilController::class, 'edit'])->name('profil-edit');

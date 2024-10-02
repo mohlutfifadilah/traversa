@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Pembayaran;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -36,5 +37,12 @@ class DatabaseSeeder extends Seeder
                 'nama_status' => $s,
             ]);
         }
+
+        Pembayaran::create([
+            'nama_pembayaran' => 'Cash',
+        ]);
+        Pembayaran::create([
+            'nama_pembayaran' => 'Transfer',
+        ]);
     }
 }

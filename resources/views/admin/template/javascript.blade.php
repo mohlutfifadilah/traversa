@@ -41,4 +41,21 @@
                 }
             });
         }
+
+        function confirmPaid(userId) {
+            Swal.fire({
+                title: 'Konfirmasi Pembayaran',
+                text: "Anda Yakin ingin mengubah status pembayaran ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, ubah!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('paid-' + userId).submit();
+                }
+            });
+        }
     </script>

@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('invoice', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_transaksi')->nullable();
             $table->string('id_armada')->nullable();
             $table->string('id_status')->nullable();
+            $table->string('id_jenis_pembayaran')->nullable();
             $table->string('nama_lengkap');
             $table->string('email')->unique();
             $table->string('alamat_penjemputan');
@@ -24,6 +26,7 @@ return new class extends Migration
             $table->string('no_whatsapp');
             $table->string('barang')->nullable();
             $table->integer('tarif')->nullable();
+            $table->integer('is_paid')->nullable();
             $table->timestamps();
         });
     }

@@ -64,8 +64,8 @@
 
                                             <dt class="col-sm-5">Tarif</dt>
                                             <dd class="col-sm-7">
-                                                @if (is_null($invoice->tarif) | !is_int($invoice->tarif))
-                                                    <p class="text-danger">-,</p>
+                                                @if (is_null($invoice->tarif) || !is_int($invoice->tarif) || $invoice->tarif <= 0)
+                                                    <p class="text-danger">Belum diatur</p>
                                                 @else
                                                     <p>@currency($invoice->tarif)</p>
                                                 @endif
@@ -103,13 +103,18 @@
                                                         <div class="row">
                                                             <div class="col mb-3">
                                                                 <label for="tarif" class="form-label">Tarif</label>
-                                                                <input
-                                                                type="text"
-                                                                id="tarif"
-                                                                class="form-control"
-                                                                name="tarif"
-                                                                placeholder="Masukkan tarif"
-                                                                />
+                                                                <input type="text" id="tarif" class="form-control" name="tarif" placeholder="Masukkan tarif" required/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col mb-3">
+                                                                <label for="jenis_pembayaran" class="form-label">Jenis Pembayaran</label>
+                                                                <select class="form-control" id="jenis_pembayaran" name="jenis_pembayaran" required>
+                                                                    <option selected disabled value="">Pilih Jenis Pembayaran</option>
+                                                                    @foreach ($pembayaran as $p)
+                                                                        <option value="{{ $p->id }}">{{ $p->nama_pembayaran }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
