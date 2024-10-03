@@ -2,23 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     //
     public function index(){
-        // $count_jenjang = Profil::all()->count();
+        $invoice = Invoice::all();
+        $count_invoice = Invoice::all()->count();
+        $count_cash = Invoice::where('id_jenis_pembayaran', 1)->get()->count();
+        $count_transfer = Invoice::where('id_jenis_pembayaran', 2)->get()->count();
         // $count_tenagapengajar = Pegawai::all()->count();
         // $count_kegiatan = Kegiatan::all()->count();
         // $count_artikel = Artikel::all()->count();
 
-        // return view('admin.dashboard', compact(
-        //     'count_jenjang',
-        //     'count_tenagapengajar',
-        //     'count_kegiatan',
-        //     'count_artikel'
-        // ));
-        return view('admin.dashboard');
+        return view('admin.dashboard', compact(
+            'invoice',
+            'count_invoice',
+            'count_cash',
+            'count_transfer',
+            // 'count_artikel'
+        ));
     }
 }
