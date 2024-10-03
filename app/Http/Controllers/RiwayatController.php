@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RiwayatExport;
 use App\Models\Armada;
 use App\Models\Invoice;
 use App\Models\Pembayaran;
 use App\Models\Status;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RiwayatController extends Controller
@@ -98,6 +100,22 @@ class RiwayatController extends Controller
         $pdf->setPaper('A4', 'potrait');
 
     	return $pdf->download('INVOICE-' . $invoice->kode_transaksi . '.pdf');
+    }
+
+    public function export_excel(){
+        return Excel::download(new RiwayatExport(),'invoice' . now() . '.xlsx');
+    }
+
+    public function export_pdf(){
+        // Mengambil data pegawai dengan kolom 'nama_lengkap' dan 'jabatan'
+        $invoice = Invoice::select('kode_transaksi', 'id_armada', 'id_status', 'id_jenis_pembayaran', 'nama_lengkap', 'email', 'alamat_penjemputan', 'alamat_tujuan', 'tanggal_jam', 'jumlah_penumpang', 'no_whatsapp', 'barang', 'tarif')->get();
+
+    	$pdf = Pdf::loadview('admin.riwayat.export-pdf',['invoice'=>$invoice]);
+
+        // Mengatur orientasi landscape (array dengan ukuran kertas dan orientasi)
+        $pdf->setPaper('A4', 'potrait');
+
+    	return $pdf->download('invoice.pdf');
     }
 
 

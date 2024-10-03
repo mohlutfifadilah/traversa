@@ -52,6 +52,8 @@ Route::middleware(['Auth'])->group(function(){
     Route::resource('riwayat', RiwayatController::class);
     Route::get('/cetak_invoice/{id}', [RiwayatController::class, 'cetak_invoice'])->name('cetak_invoice');
     Route::post('/riwayat_paid/{id}', [RiwayatController::class, 'riwayat_paid'])->name('riwayat_paid');
+    Route::get('/export-excel', [RiwayatController::class, 'export_excel'])->name('riwayat-export-excel');
+    Route::get('/export-pdf', [RiwayatController::class, 'export_pdf'])->name('riwayat-export-pdf');
     // // profil
     // Route::get('/{jenjang}/profil/{id}', [ProfilController::class, 'index'])->name('profil-index');
     // Route::get('/{jenjang}/profil/edit/{id}', [ProfilController::class, 'edit'])->name('profil-edit');

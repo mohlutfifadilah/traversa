@@ -9,7 +9,14 @@
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="m-0">Riwayat</h5>
-                    {{-- <a href="{{ route('invoice.create') }}" class="btn btn-success btn-sm"><i class="bx bx-plus-circle"></i> Tambah</a> --}}
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ route('riwayat-export-excel') }}" class="btn btn-sm btn-success me-2 mb-2 mt-2">
+                            <i class="bx bxs-file-export"></i> Export Excel
+                        </a>
+                        <a href="{{ route('riwayat-export-pdf') }}" class="btn btn-sm btn-danger me-2 mb-2 mt-2">
+                            <i class="bx bxs-file-pdf"></i> Export PDF
+                        </a>
+                    </div>
                 </div>
                 <div class="table-responsive text-nowrap mb-3">
                     <table id="dataTable" class="table table-striped" style="width:100%">
