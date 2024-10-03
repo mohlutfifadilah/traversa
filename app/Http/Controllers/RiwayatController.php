@@ -9,6 +9,7 @@ use App\Models\Pembayaran;
 use App\Models\Status;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -107,13 +108,34 @@ class RiwayatController extends Controller
     }
 
     public function export_pdf(){
-        // Mengambil data pegawai dengan kolom 'nama_lengkap' dan 'jabatan'
-        $invoice = Invoice::select('kode_transaksi', 'id_armada', 'id_status', 'id_jenis_pembayaran', 'nama_lengkap', 'email', 'alamat_penjemputan', 'alamat_tujuan', 'tanggal_jam', 'jumlah_penumpang', 'no_whatsapp', 'barang', 'tarif')->get();
+
+        $invoice = DB::table('invoice')
+            ->join('armada', 'invoice.id_armada', '=', 'armada.id')
+            ->join('status', 'invoice.id_status', '=', 'status.id')
+            ->join('pembayaran', 'invoice.id_jenis_pembayaran', '=', 'pembayaran.id')
+            ->whereNotNull('invoice.kode_transaksi')
+            ->where('invoice.tarif', '>=', 0)
+            ->select(
+                'invoice.kode_transaksi',
+                'armada.nama_armada', // Mengambil nama armada
+                'status.nama_status', // Mengambil nama status
+                'pembayaran.nama_pembayaran', // Mengambil nama jenis pembayaran
+                'invoice.nama_lengkap',
+                'invoice.email',
+                'invoice.alamat_penjemputan',
+                'invoice.alamat_tujuan',
+                'invoice.tanggal_jam',
+                'invoice.jumlah_penumpang',
+                'invoice.no_whatsapp',
+                'invoice.barang',
+                'invoice.tarif'
+            )
+            ->get();
 
     	$pdf = Pdf::loadview('admin.riwayat.export-pdf',['invoice'=>$invoice]);
 
         // Mengatur orientasi landscape (array dengan ukuran kertas dan orientasi)
-        $pdf->setPaper('A4', 'potrait');
+        $pdf->setPaper('A4', 'landscape');
 
     	return $pdf->download('invoice.pdf');
     }
