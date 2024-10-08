@@ -93,13 +93,11 @@
 		growthChart.render();
 	}
 
-	// Profit Report Line Chart
-	// --------------------------------------------------------------------
+	// Konfigurasi chart
 	const profileReportChartEl = document.querySelector("#profileReportChart"),
 		profileReportChartConfig = {
 			chart: {
 				height: 80,
-				// width: 175,
 				type: "line",
 				toolbar: {
 					show: false,
@@ -109,7 +107,7 @@
 					top: 10,
 					left: 5,
 					blur: 3,
-					color: config.colors.warning,
+					color: "#ffab00", // Sesuaikan warna grafik
 					opacity: 0.15,
 				},
 				sparkline: {
@@ -122,7 +120,7 @@
 					right: 8,
 				},
 			},
-			colors: [config.colors.warning],
+			colors: ["#ffab00"], // Warna grafik
 			dataLabels: {
 				enabled: false,
 			},
@@ -132,25 +130,42 @@
 			},
 			series: [
 				{
-					data: [110, 270, 145, 245, 205, 285],
+					name: "Tarif",
+					data: Object.values(tarifPerBulan), // Data dari PHP (Laravel)
 				},
 			],
 			xaxis: {
-				show: false,
+				categories: [
+					"Jan",
+					"Feb",
+					"Mar",
+					"Apr",
+					"Mei",
+					"Jun",
+					"Jul",
+					"Agu",
+					"Sep",
+					"Okt",
+					"Nov",
+					"Des",
+				],
+				show: true,
 				lines: {
 					show: false,
 				},
 				labels: {
-					show: false,
+					show: true,
 				},
 				axisBorder: {
-					show: false,
+					show: true,
 				},
 			},
 			yaxis: {
-				show: false,
+				show: true,
 			},
 		};
+
+	// Render chart
 	if (
 		typeof profileReportChartEl !== undefined &&
 		profileReportChartEl !== null
@@ -231,7 +246,7 @@
 								color: headingColor,
 								offsetY: -15,
 								formatter: function (val) {
-									var percentage = ((val / totalSum) * 100); // Membulatkan persentase hingga dua desimal
+									var percentage = (val / totalSum) * 100; // Membulatkan persentase hingga dua desimal
 									return percentage + "%"; // Menampilkan persentase
 								},
 							},

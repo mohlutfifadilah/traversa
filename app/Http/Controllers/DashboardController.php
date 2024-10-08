@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Armada;
 use App\Models\Invoice;
 use App\Models\Pembayaran;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,20 +34,34 @@ class DashboardController extends Controller
                 ->groupBy('id_armada')
                 ->get();
 
-        $income = Invoice::sum('tarif');
-
         $count_armada = Armada::all()->count();
 
-        // $data2 = Invoice::select('id_armada', DB::raw('count(*) as total'))
-        //         ->groupBy('id_armada')
-        //         ->get();
 
-        // // Ambil nama armada berdasarkan id_armada
-        // $labels2 = $data2->map(function($invoice) {
-        //     return Armada::find($invoice->id_armada)->nama_armada;
-        // });
+        // Dapatkan tahun saat ini
+        $year = Carbon::now()->year;
+        // Ambil bulan dan tahun saat ini
+        $month = Carbon::now()->month;
 
-        // $totals2 = $data2->pluck('total');
+        $income = Invoice::whereYear('created_at', $year)->sum('tarif');
+
+        // Ambil data tarif per bulan untuk tahun yang dipilih
+        $tarifData = Invoice::selectRaw('SUM(tarif) as total, MONTH(created_at) as bulan')
+                    ->whereYear('created_at', $year)
+                    ->groupBy('bulan')
+                    ->orderBy('bulan')
+                    ->get();
+
+        // Kirim data tarif per bulan sebagai array
+        $tarifPerBulan = array_fill(1, 12, 0); // Isi default untuk 12 bulan
+        foreach ($tarifData as $data) {
+            $tarifPerBulan[$data->bulan] = $data->total; // Isi bulan yang ada datanya
+        }
+
+        // Ambil total tarif untuk bulan ini
+        $totalTarifBulanIni = Invoice::whereMonth('created_at', $month)
+                ->whereYear('created_at', $year)
+                ->sum('tarif');
+
 
         return view('admin.dashboard', compact(
             'invoice',
@@ -55,8 +71,12 @@ class DashboardController extends Controller
             'labels1',
             'totals1',
             'armadas',
-            'income',
             'count_armada',
+            'income',
+            'year',
+            'month',
+            'tarifPerBulan',
+            'totalTarifBulanIni'
             // 'totals2'
         ));
     }

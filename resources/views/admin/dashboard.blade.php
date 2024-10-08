@@ -124,13 +124,13 @@
                             <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                               <div class="card-title">
                                 <h5 class="text-nowrap mb-2">Pemasukan</h5>
-                                <span class="badge bg-label-warning rounded-pill">Year 2021</span>
+                                <span class="badge bg-label-warning rounded-pill">{{ $year }}</span>
                               </div>
                               <div class="mt-sm-auto">
                                 <small class="text-success text-nowrap fw-semibold"
-                                  ><i class="bx bx-chevron-up"></i> 68.2%</small
+                                  ><i class="bx bx-chevron-up"></i> {{ $month }}</small
                                 >
-                                <h3 class="mb-0">$84,686k</h3>
+                                <h3 class="mb-0">@currency($totalTarifBulanIni)</h3>
                               </div>
                             </div>
                             <div id="profileReportChart"></div>
@@ -222,6 +222,9 @@
                     }
                     return color;
                 }
+
+                // Ambil data dari Laravel
+                const tarifPerBulan = @json($tarifPerBulan); // Data tarif per bulan dari backend
             </script>
 
 @endsection
