@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/pesan', function () {return view('pesan');});
+Route::get('/list-armada', function () {return view('armada');});
 
 // Login
 Route::get('/login', [LoginController::class, 'index']);
