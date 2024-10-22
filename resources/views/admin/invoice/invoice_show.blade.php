@@ -34,7 +34,7 @@
                                         <dl class="row mt-2">
                                             <dt class="col-sm-5">Armada</dt>
                                             <dd class="col-sm-7">
-                                                <p>{{ $armada->nama_armada }}</p>
+                                                -
                                             </dd>
 
                                             <dt class="col-sm-5">Alamat Penjemputan</dt>
@@ -108,11 +108,11 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col mb-3">
-                                                                <label for="jenis_pembayaran" class="form-label">Jenis Pembayaran</label>
-                                                                <select class="form-control" id="jenis_pembayaran" name="jenis_pembayaran" required>
-                                                                    <option selected disabled value="">Pilih Jenis Pembayaran</option>
-                                                                    @foreach ($pembayaran as $p)
-                                                                        <option value="{{ $p->id }}">{{ $p->nama_pembayaran }}</option>
+                                                                <label for="id_armada" class="form-label">Armada</label>
+                                                                <select class="form-control" id="id_armada" name="id_armada" required>
+                                                                    <option selected disabled value="">Pilih Armada</option>
+                                                                    @foreach ($armada as $a)
+                                                                        <option value="{{ $a->id }}">{{ $a->nama_armada }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>

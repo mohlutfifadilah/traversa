@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\UsersController;
+use App\Models\Pembayaran;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/pesan', function () {return view('pesan');});
 Route::get('/list-armada', function () {return view('armada');});
+Route::get('/pesan', function () {
+    $jenis_pembayaran = Pembayaran::all();
+    return view('pesan', compact('jenis_pembayaran'));
+});
+Route::post('/submit_pesan', [InvoiceController::class, 'submit_pesan'])->name('submit_pesan');
 
 // Login
 Route::get('/login', [LoginController::class, 'index']);

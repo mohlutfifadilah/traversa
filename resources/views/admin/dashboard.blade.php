@@ -91,24 +91,26 @@
                     <div class="card-body">
                       <ul class="p-0 m-0">
                         @foreach ($armadas as $a)
-                            @php
-                                $armada = \App\Models\Armada::find($a->id_armada);
-                            @endphp
-                            <li class="d-flex mb-4 pb-1">
-                                <div class="avatar flex-shrink-0 me-3">
-                                    <img src="{{ asset('sneat/img/icons/unicons/car-solid-24.png') }}" alt="Credit Card" class="rounded" />
-                                </div>
-                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                    <div class="me-2">
-                                    <small class="text-muted d-block mb-1">Armada</small>
-                                    <h6 class="mb-0">{{ $armada->nama_armada }}</h6>
+                            @if ($a->id_armada)
+                                @php
+                                    $armada = \App\Models\Armada::find($a->id_armada);
+                                @endphp
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="avatar flex-shrink-0 me-3">
+                                        <img src="{{ asset('sneat/img/icons/unicons/car-solid-24.png') }}" alt="Credit Card" class="rounded" />
                                     </div>
-                                    <div class="user-progress d-flex align-items-center gap-1">
-                                    <h6 class="mb-0">@currency($a->total_tarif)</h6>
-                                    <span class="text-muted">++</span>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                        <small class="text-muted d-block mb-1">Armada</small>
+                                        <h6 class="mb-0">{{ $armada->nama_armada }}</h6>
+                                        </div>
+                                        <div class="user-progress d-flex align-items-center gap-1">
+                                        <h6 class="mb-0">@currency($a->total_tarif)</h6>
+                                        <span class="text-muted">++</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endif
                         @endforeach
                       </ul>
                     </div>

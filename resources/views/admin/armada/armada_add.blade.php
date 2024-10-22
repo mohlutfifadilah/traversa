@@ -53,7 +53,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                                 <label for="nama_armada" class="form-label">Nama Armada</label>
-                                                <input class="form-control @if(session('nama_armada')) is-invalid @endif @error('nama_armada') is-invalid @enderror" type="text" id="nama_armada" name="nama_armada" value="" placeholder="" />
+                                                <input class="form-control @if(session('nama_armada')) is-invalid @endif @error('nama_armada') is-invalid @enderror" type="text" id="nama_armada" name="nama_armada" value="{{ old('nama_armada') }}" placeholder="" />
                                                 @error('nama_armada')
                                                     <small id="nama_armada" class="text-danger">
                                                         {{ $message }}
@@ -69,7 +69,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                                 <label for="kapasitas" class="form-label">Kapasitas</label>
-                                                <input class="form-control @if(session('kapasitas')) is-invalid @endif @error('kapasitas') is-invalid @enderror" type="text" id="kapasitas" name="kapasitas" value="" placeholder="Ex : 6" />
+                                                <input class="form-control @if(session('kapasitas')) is-invalid @endif @error('kapasitas') is-invalid @enderror" type="text" id="kapasitas" name="kapasitas" value="{{ old('kapasitas') }}" placeholder="Ex : 6" />
                                                 @error('kapasitas')
                                                     <small id="kapasitas" class="text-danger">
                                                         {{ $message }}
@@ -85,7 +85,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                                 <label for="berat" class="form-label">Berat</label>
-                                                <input class="form-control @if(session('berat')) is-invalid @endif @error('berat') is-invalid @enderror" type="text" id="berat" name="berat" value="" placeholder="Ex : 120kg" />
+                                                <input class="form-control @if(session('berat')) is-invalid @endif @error('berat') is-invalid @enderror" type="text" id="berat" name="berat" value="{{ old('berat') }}" placeholder="Ex : 120kg" />
                                                 <div id="berat" class="form-text text-danger">
                                                     * Dalam satuan kg
                                                 </div>
