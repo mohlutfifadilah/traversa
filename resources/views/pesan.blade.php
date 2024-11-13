@@ -24,36 +24,48 @@
                                 type="text"
                                 class="peer block min-h-[auto] w-full rounded border border-transparent bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-100 ease-linear text-black focus:placeholder:opacity-100 peer-focus:text-black peer-focus:border-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none light:text-neutral-200 light:placeholder:text-neutral-200 light:peer-focus:text-black light:peer-focus:border-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                 id="exampleFormControlInput2"
-                                placeholder="Nama Lengkap" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required/>
+                                placeholder="Nama Lengkap" name="nama_lengkap" value="{{ old('nama_lengkap') }}"/>
                             <label
                                 for="exampleFormControlInput2"
                                 class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-gray-700 transition-all duration-100 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-black peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-black"
                             >Nama Lengkap</label>
                         </div>
+                        @error('nama_lengkap')
+                            <div class="mb-5">
+                                <small class="text-red-500">{{ $message }}</small>
+                            </div>
+                        @enderror
                         <div class="relative mb-3" data-te-input-wrapper-init>
                             <input
                                 type="text"
                                 class="peer block min-h-[auto] w-full rounded border border-transparent bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-100 ease-linear text-black focus:placeholder:opacity-100 peer-focus:text-black peer-focus:border-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none light:text-neutral-200 light:placeholder:text-neutral-200 light:peer-focus:text-black light:peer-focus:border-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                 id="exampleFormControlInput2"
-                                placeholder="Email" name="email" required value="{{ old('email') }}"/>
+                                placeholder="Email" name="email" value="{{ old('email') }}"/>
                             <label
                                 for="exampleFormControlInput2"
                                 class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-gray-700 transition-all duration-100 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-black peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-black"
                             >Email</label>
                         </div>
+                        @error('email')
+                            <div class="mb-5">
+                                <small class="text-red-500">{{ $message }}</small>
+                            </div>
+                        @enderror
                         <div class="relative mb-3" data-te-input-wrapper-init>
                             <input
                                 type="text"
                                 class="peer block min-h-[auto] w-full rounded border border-transparent bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-100 ease-linear text-black focus:placeholder:opacity-100 peer-focus:text-black peer-focus:border-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none light:text-neutral-200 light:placeholder:text-neutral-200 light:peer-focus:text-black light:peer-focus:border-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                 id="exampleFormControlInput2"
-                                placeholder="No Whatsapp" name="no_whatsapp" required value="{{ old('no_whatsapp') }}"/>
+                                placeholder="No Whatsapp" name="no_whatsapp" value="{{ old('no_whatsapp') }}"/>
                             <label
                                 for="exampleFormControlInput2"
                                 class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-gray-700 transition-all duration-100 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-black peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-black"
                             >No Whatsapp</label>
                         </div>
                         @error('no_whatsapp')
-                            <small class="text-red-500">{{ $message }}</small>
+                            <div class="mb-5">
+                                <small class="text-red-500">{{ $message }}</small>
+                            </div>
                         @enderror
                         <div class="py-4">
                             <h3 class="text-danger">
@@ -67,12 +79,17 @@
                             <input
                                 type="text" name="tanggal"
                                 class="peer block min-h-[auto] w-full rounded border border-white bg-white px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-100 ease-linear text-black focus:placeholder:opacity-100 peer-focus:text-black peer-focus:border-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none light:text-neutral-200 light:placeholder:text-neutral-200 light:peer-focus:text-black light:peer-focus:border-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                placeholder="Tanggal Keberangkatan" id="datepicker-input" data-te-datepicker-toggle-ref data-te-datepicker-toggle-button-ref required value="{{ old('tanggal') }}"/>
+                                placeholder="Tanggal Keberangkatan" id="datepicker-input" data-te-datepicker-toggle-ref data-te-datepicker-toggle-button-ref value="{{ old('tanggal') }}"/>
                             <label
                                 for="datepicker-input"
                                 class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-gray-700 transition-all duration-100 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-black peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-black"
                             >Tanggal Keberangkatan</label>
                         </div>
+                        @error('tanggal')
+                            <div class="mb-5">
+                                <small class="text-red-500">{{ $message }}</small>
+                            </div>
+                        @enderror
                         <div class="relative mb-3"
                                 data-te-format24="true"
                                 id="timepicker-format"
@@ -81,47 +98,67 @@
                                 type="text" name="jam"
                                 class="peer block min-h-[auto] w-full rounded border border-transparent bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-100 ease-linear text-black focus:placeholder:opacity-100 peer-focus:text-black peer-focus:border-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none light:text-neutral-200 light:placeholder:text-neutral-200 light:peer-focus:text-black light:peer-focus:border-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                 data-te-toggle="timepicker"
-                                    id="form14" required value="{{ old('jam') }}"/>
+                                    id="form14" value="{{ old('jam') }}"/>
                             <label
                                 for="form14"
                                 class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-gray-700 transition-all duration-100 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-black peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-black"
                             >Jam Keberangkatan</label>
                         </div>
+                        @error('jam_keberangkatan')
+                            <div class="mb-5">
+                                <small class="text-red-500">{{ $message }}</small>
+                            </div>
+                        @enderror
                         <div class="relative mb-3" data-te-input-wrapper-init>
                             <input
                                 type="text"
                                 class="peer block min-h-[auto] w-full rounded border border-transparent bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-100 ease-linear text-black focus:placeholder:opacity-100 peer-focus:text-black peer-focus:border-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none light:text-neutral-200 light:placeholder:text-neutral-200 light:peer-focus:text-black light:peer-focus:border-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                 id="exampleFormControlInput2"
-                                placeholder="Alamat Penjemputan" name="alamat_penjemputan" required value="{{ old('alamat_penjemputan') }}"/>
+                                placeholder="Alamat Penjemputan" name="alamat_penjemputan" value="{{ old('alamat_penjemputan') }}"/>
                             <label
                                 for="exampleFormControlInput2"
                                 class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-gray-700 transition-all duration-100 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-black peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-black"
                             >Alamat Penjemputan</label>
                         </div>
+                        @error('alamat_penjemputan')
+                            <div class="mb-5">
+                                <small class="text-red-500">{{ $message }}</small>
+                            </div>
+                        @enderror
                         <div class="relative mb-3" data-te-input-wrapper-init>
                             <input
                                 type="text"
                                 class="peer block min-h-[auto] w-full rounded border border-transparent bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-100 ease-linear text-black focus:placeholder:opacity-100 peer-focus:text-black peer-focus:border-black data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none light:text-neutral-200 light:placeholder:text-neutral-200 light:peer-focus:text-black light:peer-focus:border-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                 id="exampleFormControlInput2"
-                                placeholder="Alamat Tujuan" name="alamat_tujuan" required value="{{ old('alamat_tujuan') }}"/>
+                                placeholder="Alamat Tujuan" name="alamat_tujuan" value="{{ old('alamat_tujuan') }}"/>
                             <label
                                 for="exampleFormControlInput2"
                                 class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-gray-700 transition-all duration-100 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-black peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-black"
                             >Alamat Tujuan</label>
                         </div>
+                        @error('alamat_tujuan')
+                            <div class="mb-5">
+                                <small class="text-red-500">{{ $message }}</small>
+                            </div>
+                        @enderror
                         <!--Large input-->
                         <div class="relative mb-3" data-te-input-wrapper-init>
                             <input
                                 type="number"
                                 class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] text-default-700 outline-none transition-all duration-100 ease-linear focus:placeholder:opacity-100 peer-focus:text-default data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none light:text-neutral-200 light:placeholder:text-neutral-200 light:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                 id="exampleFormControlInput2"
-                                placeholder="Jumlah Penumpang" name="jumlah_penumpang" required value="{{ old('jumlah_penumpang') }}"/>
+                                placeholder="Jumlah Penumpang" name="jumlah_penumpang" value="{{ old('jumlah_penumpang') }}"/>
                             <label
                                 for="exampleFormControlInput2"
                                 class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-dark-700 transition-all duration-100 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none light:text-neutral-200 light:peer-focus:text-primary"
                                 >Jumlah Penumpang
                             </label>
                         </div>
+                        @error('jumlah_penumpang')
+                            <div class="mb-5">
+                                <small class="text-red-500">{{ $message }}</small>
+                            </div>
+                        @enderror
                         <!--Large input-->
                         <div class="relative mb-3" data-te-input-wrapper-init>
                             <input
@@ -149,6 +186,11 @@
                                 @endforeach
                             </select>
                         </div>
+                        @error('jenis_pembayaran')
+                            <div class="mb-5">
+                                <small class="text-red-500">{{ $message }}</small>
+                            </div>
+                        @enderror
                         <div class="mt-4">
                             <button class="w-full text-white p-2" style="background-color: rgb(229, 62, 62);" type="submit">Pesan Sekarang</button>
                         </div>

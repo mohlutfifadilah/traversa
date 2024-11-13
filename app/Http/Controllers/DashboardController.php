@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     //
     public function index(){
-        $invoice = Invoice::all();
+        $invoice = Invoice::select('id_jenis_pembayaran')->groupBy('id_jenis_pembayaran')->get();
         $count_invoice = Invoice::all()->count();
         $count_cash = Invoice::where('id_jenis_pembayaran', 1)->get()->count();
         $count_transfer = Invoice::where('id_jenis_pembayaran', 2)->get()->count();

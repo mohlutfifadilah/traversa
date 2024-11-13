@@ -27,12 +27,12 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Login | Traversa</title>
+    <title>Login | Himalayan</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('t.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('1.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -136,8 +136,8 @@
                 </a>
               </div>
               <!-- /Logo --> --}}
-              <h4 class="mb-2">Selamat Datang! 👋</h4>
-              <p class="mb-4">Sistem Pengelolaan Data Website 'Traversa'</p>
+              <h4 class="mb-2">Selamat Datang!</h4>
+              <p class="mb-4">Sistem Pengelolaan Data Website 'Himalayan'</p>
 
               <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
                 @csrf

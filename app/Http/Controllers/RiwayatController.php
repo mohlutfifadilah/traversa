@@ -92,7 +92,7 @@ class RiwayatController extends Controller
 
     public function cetak_invoice(string $id){
         // Mengambil data pegawai dengan kolom 'nama_lengkap' dan 'jabatan'
-        $invoice = Invoice::where('id', $id)->select('kode_transaksi', 'id_armada', 'id_status', 'id_jenis_pembayaran', 'nama_lengkap', 'email', 'alamat_penjemputan', 'alamat_tujuan', 'tanggal_jam', 'jumlah_penumpang', 'no_whatsapp', 'barang', 'tarif')->first();
+        $invoice = Invoice::where('id', $id)->select('kode_transaksi', 'id_armada', 'id_status', 'id_jenis_pembayaran', 'nama_lengkap', 'email', 'alamat_penjemputan', 'alamat_tujuan', 'tanggal_jam', 'jumlah_penumpang', 'no_whatsapp', 'barang', 'tarif', 'is_paid')->first();
         $pdf = Pdf::loadview('admin.riwayat.cetak-invoice',[
             'invoice'=> $invoice,
         ]);

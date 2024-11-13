@@ -461,7 +461,7 @@ h1{
 /* hero */
 
 .hero{
-  background-image: url('../public/Background-home.png');
+  background-image: url("hero.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
   height: 670px;
@@ -469,14 +469,14 @@ h1{
 
 .heroo{
   height: 50px;
-  background-image: url('../public/fu.jpg');
+  background-image: url("hero.jpg");
   background-size: 100%;
 }
 
 .helo{
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1002%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(0%2c 153%2c 255%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c709.004C130.941%2c701.942%2c211.157%2c563.698%2c300.701%2c467.9C371.262%2c392.411%2c423.608%2c307.025%2c464.456%2c212.11C504.48%2c119.111%2c552.859%2c22.743%2c535.184%2c-76.948C517.7%2c-175.563%2c434.712%2c-244.167%2c370.008%2c-320.613C304.503%2c-398.006%2c248.4%2c-488.037%2c154.617%2c-526.577C56.232%2c-567.008%2c-55.45%2c-566.373%2c-157.832%2c-537.526C-260.876%2c-508.493%2c-340.691%2c-435.682%2c-420.647%2c-364.492C-511.648%2c-283.469%2c-627.951%2c-212.92%2c-655.67%2c-94.271C-683.844%2c26.328%2c-626.686%2c150.503%2c-566.21%2c258.579C-509.018%2c360.786%2c-413.951%2c428.586%2c-322.294%2c501.5C-220.235%2c582.689%2c-130.224%2c716.027%2c0%2c709.004' fill='%23007acc'%3e%3c/path%3e%3cpath d='M1440 929.716C1512.174 933.325 1590.0430000000001 926.572 1646.992 882.087 1702.516 838.7149999999999 1709.116 760.355 1738.684 696.404 1768.424 632.082 1826.8319999999999 575.828 1821.257 505.183 1815.615 433.695 1764.679 372.272 1709.489 326.486 1658.926 284.539 1592.539 271.684 1527.623 261.584 1469.581 252.553 1413.597 264.577 1355.251 271.371 1283.842 279.686 1203.649 261.938 1146.789 305.93100000000004 1087.806 351.567 1062.455 430.405 1053.946 504.494 1045.568 577.437 1065.031 650.692 1099.761 715.3820000000001 1133.079 777.441 1186.3 824.486 1245.897 862.03 1305.0720000000001 899.308 1370.149 926.223 1440 929.716' fill='%2333adff'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1002'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-image: url("hero.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
 }
 
 .active {
@@ -2000,3 +2000,4 @@ h1{
     --tw-ring-color: rgb(82 82 82 / var(--tw-ring-opacity));
   }
 }
+

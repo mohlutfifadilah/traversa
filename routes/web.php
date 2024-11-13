@@ -9,6 +9,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\UsersController;
+use App\Models\Armada;
+use App\Models\Kategori;
 use App\Models\Pembayaran;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +26,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $armada = Armada::orderBy('created_at', 'ASC')->limit(3)->get();
+    return view('home', compact('armada'));
 });
-Route::get('/list-armada', function () {return view('armada');});
+Route::get('/list-armada', function () {
+    $kategori = Kategori::all();
+    $armada = Armada::all();
+    return view('armada', compact('kategori', 'armada'));
+});
 Route::get('/pesan', function () {
     $jenis_pembayaran = Pembayaran::all();
     return view('pesan', compact('jenis_pembayaran'));

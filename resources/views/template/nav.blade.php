@@ -1,7 +1,7 @@
 <nav x-data="{open:false}" class="sticky top-0 z-50">
         <div class="w-full z-50">
             <div class="flex p-2 justify-around items-center bg-hideng text-white">
-                <img src="{{ asset('t.png') }}" alt="Logo" width="50" class="oder-1">
+                <img src="{{ asset('2.png') }}" alt="Logo" width="180" height="180" class="oder-1">
                 <img src="{{ asset('stack.png') }}" alt="Menu" width="50" @click="open = !open" class="order-2 lg:hidden">
                 <div class="hidden lg:block">
                     <ul class="flex gap-6 mr-6 z-50">

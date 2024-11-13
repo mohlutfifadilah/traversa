@@ -1,24 +1,25 @@
 <!-- footer -->
-    <footer class="bg-hideng text-white ">
+    <footer class="bg-hideng text-white pb-3">
         <div class="flex md:flex-row justify-around items-center">
-            <div class="p-3 ">
-                <img src="{{ asset('t.png') }}" class="float-left p-2" alt="Logo" width="100">
-                <h1>Traversa</h1>
+            <div class="">
+                <img src="{{ asset('1.png') }}" class="float-left mr-3" alt="Logo" width="80">
+                <h1 class="mb-2">Himalayan</h1>
                 <p>Agen travel terpercaya mudah aman dan cepat yang bisa di andalkan dalam perjalanan anda</p>
             </div>
             <div class="p-3">
-                <h1>Kontak Kami</h1>
+                <h1 class="p-5">Kontak</h1>
                 <ul>
-                    <li><ion-icon name="call-outline"></ion-icon>081234567890</li>
-                    <li><ion-icon name="logo-facebook"></ion-icon>Traversa Page</li>
-                    <li><ion-icon name="location-outline"></ion-icon>Jalan candi aspal no 17 </li>
+                    <li class="ml-3 mb-3"><ion-icon name="call-outline" class="mr-2"></ion-icon>085600009887</li>
+                    <li class="ml-3 mb-3"><ion-icon name="logo-facebook" class="mr-2"></ion-icon>Himalayan Travel</li>
+                    <li class="ml-3"><ion-icon name="location-outline" class="mr-2"></ion-icon>Cilacap, Jawa Tengah</li>
                 </ul>
             </div>
             <div class="p-3">
-                <h1>Pelayanan</h1>
+                <h1 class="p-5">Pelayanan</h1>
                 <ul class="">
-                    <li>Tentang Kami</li>
-                    <li>Testimoni</li>
+                    <li class="ml-3 mb-3"><a href="{{ Request::segment(1) === '' ? '#home' : '/#home' }}">Beranda</a></li>
+                    <li class="ml-3 mb-3"><a href="{{ Request::segment(1) === '' ? '#armada' : '/#armada' }}">Armada</a></li>
+                    <li class="ml-3"><a href="/pesan">Pemesanan</a></li>
                 </ul>
             </div>
         </div>
